@@ -11,7 +11,6 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	int tmp;
 	size_t min, i, j;
 
 	if (!array || size < 2)
@@ -35,21 +34,4 @@ void selection_sort(int *array, size_t size)
 			print_array(array, size);
 		}
 	}
-}
-
-/**
- * swap - swaps two integers in an array
- *
- * @x: current integer
- * @y: previous integer
- *
- * Return: Nothing
- */
-void swap(int *x, int *y)
-{
-	int tmp;
-
-	tmp = *y;
-	*y = *x;
-	*x = tmp;
 }

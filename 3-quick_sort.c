@@ -15,7 +15,7 @@ int partition_arr(int *array, int l, int h, size_t size)
 	int pivot = array[l];
 	int i = l - 1, j = h + 1;
 
-	while (1)
+	while (i < j)
 	{
 		do {
 			i++;

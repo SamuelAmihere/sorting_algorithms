@@ -31,7 +31,7 @@ int swap_forward(listint_t **list)
 				(curr->next)->prev = curr;
 
 			(curr->prev)->next = curr;
-			swaped = 1
+			swaped = 1;
 
 			print_list(*list);
 		}
@@ -90,7 +90,7 @@ int swap_backward(listint_t **list)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	int swaped;
+	int swapped;
 
 	if (!list || !(*list) || !(*list)->next)
 		return;
@@ -109,5 +109,5 @@ void cocktail_sort_list(listint_t **list)
 		 */
 		swapped = swap_backward(list);
 
-	} while (swaped);
+	} while (swapped);
 }

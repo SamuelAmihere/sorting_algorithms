@@ -9,39 +9,44 @@
  */
 int swap_forward(listint_t **list)
 {
-	int swaped = 0;
-	listint_t *curr = *list;
+    int swapped = 0;
+    listint_t *current = *list;
 
-	while (curr)
-	{
-		if (curr->n <= curr->next->n)
-			curr = curr->next;
-		else
-		{
-			if (!curr->prev)
-				*list = curr->next;
-			else
-				(curr->prev)->next = curr->next;
+    while (current->next != NULL)
+    {
+        if (current->n > current->next->n)
+        {
+            // Swap nodes
+            if (current->prev != NULL)
+                current->prev->next = current->next;
+            else
+                *list = current->next;
 
-			curr->next->prev = curr->prev;
-			curr->prev = curr->next;
-			curr->next = (curr->next)->next;
+            current->next->prev = current->prev;
+            current->prev = current->next;
+            current->next = current->next->next;
 
-			if (curr->next)
-				(curr->next)->prev = curr;
+            if (current->next != NULL)
+                current->next->prev = current;
 
-			(curr->prev)->next = curr;
-			swaped = 1;
+            current->prev->next = current;
+            swapped = 1;
 
-			print_list(*list);
-		}
-	}
-	return (swaped);
+            print_list(*list);
+        }
+        else
+        {
+            current = current->next;
+        }
+    }
+
+    return swapped;
 }
 
+
+
 /**
- * swap_backward - Move the smallest elements to the beginning in a
- * backward pass
+ * swap_backward - Move the smallest elements to the beginning in a backward pass
  *
  * @list: Pointer to a pointer to the head of the linked list
  *
@@ -49,38 +54,43 @@ int swap_forward(listint_t **list)
  */
 int swap_backward(listint_t **list)
 {
-	int swapped = 0;
-	listint_t *curr = *list;
+    int swapped = 0;
+    listint_t *current = *list;
 
-	/* Move to the last node */
-	while (curr)
-		curr = curr->next;
+    // Move to the last node
+    while (current->next != NULL)
+        current = current->next;
 
-	while (curr->prev)
-	{
-		if ((curr->prev)->n <= curr->n)
-			curr = curr->prev;
-		else
-		{
-			curr->prev->next = curr->next;
+    while (current->prev != NULL)
+    {
+        if (current->prev->n > current->n)
+        {
+            // Swap nodes
+            current->prev->next = current->next;
 
-			if (curr->next)
-				(curr->next)->prev = curr->prev;
+            if (current->next != NULL)
+                current->next->prev = current->prev;
 
-			curr->next = curr->prev;
-			curr->prev = (curr->prev)->prev;
-			(curr->next)->prev = curr;
+            current->next = current->prev;
+            current->prev = current->prev->prev;
+            current->next->prev = current;
 
-			if (curr->prev)
-				(curr->prev)->next = curr;
+            if (current->prev != NULL)
+                current->prev->next = current;
 
-			swapped = 1;
+            swapped = 1;
 
-			print_list(*list);
-		}
-	}
-	return (swapped);
+            print_list(*list);
+        }
+        else
+        {
+            current = current->prev;
+        }
+    }
+
+    return swapped;
 }
+
 
 /**
  * cocktail_sort_list - Sorts a doubly linked list of integers
@@ -90,24 +100,24 @@ int swap_backward(listint_t **list)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	int swapped;
+    int swapped;
 
-	if (!list || !(*list) || *list->next != NULL)
-		return;
+    if (!list || !(*list) || !(*list)->next)
+        return;
 
-	do {
-		swapped = swap_forward(list);
-		/* If no elements are swapped, the list is sorted */
-		if (!swapped)
-			break;
+    do
+    {
+        // Forward pass: Move the largest elements to the end
+        swapped = swap_forward(list);
 
-		swapped = 0;
+        // If no elements are swapped, the list is sorted
+        if (!swapped)
+            break;
 
-		/*
-		 * Decrease the end pointer as the largest element is now
-		 at the end
-		 */
-		swapped = swap_backward(list);
+        swapped = 0;
 
-	} while (swapped);
+        // Decrease the end pointer as the largest element is now at the end
+        swapped = swap_backward(list);
+
+    } while (swapped);
 }

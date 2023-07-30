@@ -2,12 +2,12 @@
 
 /**
 * heapify - Builds a heap from an array
-* 
+*
 * @array: array to sort
 * @size: array size
 * @i: index
 * @size2: size of the array
-* 
+*
 * Return: Nothing
 */
 void heapify(int *array, size_t size, size_t i, size_t size2)
@@ -36,10 +36,10 @@ heapify(array, size, largest, size2);
 /**
 * headp_sort - Sorts an array of integers in ascending order
 * using the heap sort algorithm
-* 
+*
 * @array: array to sort
 * @size: array size
-* 
+*
 * Return: Nothing
 */
 void heap_sort(int *array, size_t size)

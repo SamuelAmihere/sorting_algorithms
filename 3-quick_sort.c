@@ -27,7 +27,6 @@ int partition_arr(int *array, int l, int h, size_t size)
 
 		if (i >= j)
 			return (j);
-
 		if (array[i] != array[j])
 		{
 			swap(&array[i], &array[j]);

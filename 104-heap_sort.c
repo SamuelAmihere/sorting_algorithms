@@ -34,7 +34,7 @@ heapify(array, size, largest, size2);
 }
 
 /**
-* headp_sort - Sorts an array of integers in ascending order
+* heap_sort - Sorts an array of integers in ascending order
 * using the heap sort algorithm
 *
 * @array: array to sort

@@ -7,12 +7,12 @@
  * @max: The maximum value found
  * Return: Nothing
  */
-void find_max(int *array, size_t size, int *max)
+void find_max(int *array, size_t size, size_t *max)
 {
 	size_t i;
 
 	for (i = 0; i < size; i++)
-		if (array[i] > *max)
+		if ((size_t)array[i] > *max)
 			*max = array[i];
 }
 
@@ -27,8 +27,8 @@ void find_max(int *array, size_t size, int *max)
  */
 void counting_sort(int *array, size_t size)
 {
-	int *count, *output, max = 0;
-	int i;
+	int *count, *output;
+	int i, max = 0;
 
 	if (!array || size < 2)
 		return;

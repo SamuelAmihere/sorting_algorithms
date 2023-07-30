@@ -92,7 +92,7 @@ void cocktail_sort_list(listint_t **list)
 {
 	int swapped;
 
-	if (!list || !(*list) || !(*list->next))
+	if (!list || !(*list) || *list->next != NULL)
 		return;
 
 	do {

@@ -33,6 +33,7 @@ int partition_arr(int *array, int l, int h, size_t size)
 			print_array(array, size);
 		}
 	}
+	return (j);
 }
 
 /**
